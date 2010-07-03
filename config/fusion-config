@@ -1,0 +1,37 @@
+[expo]
+as_zoom_time = 0.200000
+
+[decoration]
+as_shadow_color = #000000ff
+as_command = gtk-window-decorator --replace
+
+[scale]
+as_initiate_edge = 
+as_initiate_all_edge = TopRight
+as_initiate_all_key = <Alt>Up
+
+[core]
+as_active_plugins = core;decoration;mousepoll;place;png;vpswitch;resize;regex;dbus;text;thumbnail;glib;svg;video;wall;gnomecompat;imgjpeg;expo;fade;scale;staticswitcher;move;
+
+[vpswitch]
+as_switch_to_1_key = <Control>F1
+as_switch_to_2_key = <Control>F2
+as_switch_to_3_key = <Control>F3
+as_switch_to_4_key = <Control>F4
+
+[wall]
+as_outline_color = #333333d9
+as_background_gradient_base_color = #cccce6d9
+as_background_gradient_highlight_color = #f3f3ffd9
+as_background_gradient_shadow_color = #f3f3ffd9
+as_thumb_gradient_base_color = #33333359
+as_thumb_gradient_highlight_color = #3f3f3f3f
+as_thumb_highlight_gradient_base_color = #fffffff3
+as_thumb_highlight_gradient_shadow_color = #dfdfdfa6
+as_arrow_base_color = #e6e6e6d9
+as_arrow_shadow_color = #dcdcdcd9
+
+[gnomecompat]
+as_command_terminal = gnome-terminal --maximize
+as_run_command_terminal_key = <Shift><Alt>t
+
