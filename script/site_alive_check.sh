@@ -1,7 +1,7 @@
 #!/bin/bash
 
-localdir=/tmp/pkill.info
-testurl=http://pkill.info/blog/
+localdir=/tmp/fclose.com
+testurl=http://fclose.com/b/
 testfile=index.html
 
 testfileaddr=${localdir}/${testfile}
@@ -15,6 +15,7 @@ then
     date;
     echo "ok";
 else
-    date | mailx -S smtp="smtp://smtp.ust.hk" -s "pkill.info test failed." -r "admin@pkill.info" eric@pkill.info
+    date | mailx -S smtp="smtp://smtp.ust.hk" -s "pkill.info test
+    failed." -r "admin@fclose.com" admin@fclose.com
 fi
 

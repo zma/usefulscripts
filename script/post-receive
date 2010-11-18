@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Changed by Zhiqiang Ma
+# Changed by Zhiqiang Ma http://fclose.com/zma/
 # Copyright (c) 2007 Andy Parkins
 #
 # An example hook script to mail out commit update information.  This hook
