@@ -1,6 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Changed by Zhiqiang Ma http://fclose.com/zma/
+# Howto use this script: http://fclose.com/b/1473/setting-up-git-commit-email-notification/
+# 
 # Copyright (c) 2007 Andy Parkins
 #
 # An example hook script to mail out commit update information.  This hook
