@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Changed by Zhiqiang Ma http://fclose.com/zma/
-# Howto use this script: http://fclose.com/b/1473/setting-up-git-commit-email-notification/
+# Howto use this script: http://fclose.com/b/linux/1473/setting-up-git-commit-email-notification/
 # 
 # Copyright (c) 2007 Andy Parkins
 #
@@ -682,7 +682,7 @@ then
 fi
 
 recipients=$(git config hooks.mailinglist)
-senderemail=$(git config hooks.senderemail || echo 'zma@ust.hk')
+senderemail=$(git config hooks.senderemail || echo 'zma@fclose.com')
 announcerecipients=$(git config hooks.announcelist)
 envelopesender=$(git config hooks.envelopesender)
 emailprefix=$(git config hooks.emailprefix || echo '[GIT] ')
