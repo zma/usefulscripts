@@ -15,7 +15,6 @@ then
     date;
     echo "ok";
 else
-    date | mailx -S smtp="smtp://smtp.ust.hk" -s "pkill.info test
-    failed." -r "admin@fclose.com" admin@fclose.com
+    date | mailx -S smtp="smtp://smtp.ust.hk" -s "fclose.com test failed." -r "zma@fclose.com" zma@fclose.com
 fi
 
