@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if [ $# -lt 2 ]
+then
+    printf "usage: $0 file cmd\n"
+    printf "Each host in one line in the file\n"
+    exit 0
+fi
+
+infile=$1
+shift
+cmd=$1
+
+echo "To invoke cmd: $cmd"
+
+for line in `cat $infile`;
+do
+    echo "$line "; 
+    ssh $line "$cmd";
+done
+
