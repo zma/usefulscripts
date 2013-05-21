@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Install scala 2.9.2
+# Author: Zhiqiang Ma http://www.zhiqiangma.com
+
 echo "You need to run this as root or by sudo. 
 Enter to continue. Ctrl-C to abort."
 

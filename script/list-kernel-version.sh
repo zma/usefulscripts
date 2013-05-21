@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# list kernel version on all hosts whose IPs are in a file
+# Author: Zhiqiang Ma http://www.zhiqiangma.com
+
 if [ $# -lt 1 ]
 then
     printf "usage: $0 file\n"

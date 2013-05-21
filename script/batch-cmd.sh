@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Run a cmd on all servers from a file with each IP in a line
+# Author: Zhiqiang Ma http://www.zhiqiangma.com
+
 if [ $# -lt 2 ]
 then
     printf "usage: $0 file cmd\n"
