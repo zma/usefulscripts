@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# This is a poor man's solution
+# Consider `xm shutdown -a`
+
 # Shutdown all VMs managed by Xen
 # For newer versions of Xen using xl, xm should be replaced with xl
 # Author: Zhiqiang Ma http://www.zhiqiangma.com

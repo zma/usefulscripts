@@ -1,7 +1,7 @@
 #!/bin/bash
 
 localdir=/tmp/fclose.com
-testurl=http://fclose.com/b/
+testurl=http://fclose.com/
 testfile=index.html
 
 testfileaddr=${localdir}/${testfile}

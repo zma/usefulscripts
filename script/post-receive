@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Changed by Zhiqiang Ma http://www.zhiqiangma.com
-# Howto use this script: http://www.fclose.com/b/linux/1473/setting-up-git-commit-email-notification/
+# Howto use this script: http://www.fclose.com/1473/setting-up-git-commit-email-notification/
 # 
 # Copyright (c) 2007 Andy Parkins
 #
