@@ -8,9 +8,9 @@ http://www.fclose.com
 
 ##Author##
 
-Zhiqiang Ma
+Eric Zhiqiang Ma
 
-http://www.zhiqiangma.com
+http://www.ericzma.com
 
 ##Disclaimer##
 
