@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install scala of version $1
-# Author: Zhiqiang Ma (http://www.zhiqiangma.com)
+# Author: Zhiqiang Ma (http://www.ericzma.com)
 
 if [ $# < 2 ]
 then
@@ -26,6 +26,6 @@ echo "export PATH=/opt/scala-$ver/bin/:$PATH" > /etc/profile.d/scala.sh
 rm -f scala-$ver.tgz
 
 echo "Scala $ver is installed."
-echo "Please login again and try to run `scala` and test it"
+echo "Please login again and try to run \`scala\` and test it"
 echo "Enjoy!"
 

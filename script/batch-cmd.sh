@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Run a cmd on all servers from a file with each IP in a line
-# Author: Zhiqiang Ma http://www.zhiqiangma.com
+# Author: Zhiqiang Ma http://www.ericzma.com
 
 if [ $# -lt 2 ]
 then

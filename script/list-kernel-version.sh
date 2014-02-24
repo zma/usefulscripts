@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # list kernel version on all hosts whose IPs are in a file
-# Author: Zhiqiang Ma http://www.zhiqiangma.com
+# Author: Zhiqiang Ma http://www.ericzma.com
 
 if [ $# -lt 1 ]
 then
