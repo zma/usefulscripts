@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Changed by Zhiqiang Ma http://www.ericzma.com
+# Changed by Eric Zhiqiang Ma http://www.ericzma.com
 # Howto use this script: http://www.fclose.com/1473/setting-up-git-commit-email-notification/
 # 
 # Copyright (c) 2007 Andy Parkins
@@ -245,7 +245,11 @@ generate_create_branch_email()
 	echo ""
 
 	echo $LOGBEGIN
-	show_new_revisions
+    # avoid very large emails.
+	# show_new_revisions
+    # show at most 20 log entries
+	show_n_new_revisions 20
+
 	echo $LOGEND
 }
 
@@ -646,6 +650,60 @@ show_new_revisions()
 		echo "$onerev"
 	done
 }
+#
+# Show new revisions as the user would like to see them in the email.
+#
+show_n_new_revisions()
+{
+	# This shows all log entries that are not already covered by
+	# another ref - i.e. commits that are now accessible from this
+	# ref that were previously not accessible
+	# (see generate_update_branch_email for the explanation of this
+	# command)
+
+    # show up to n log entries
+    n=$1
+
+	# Revision range passed to rev-list differs for new vs. updated
+	# branches.
+	if [ "$change_type" = create ]
+	then
+		# Show all revisions exclusive to this (new) branch.
+		revspec=$newrev
+	else
+		# Branch update; show revisions not part of $oldrev.
+		revspec=$oldrev..$newrev
+	fi
+
+	other_branches=$(git for-each-ref --format='%(refname)' refs/heads/ |
+	    grep -F -v $refname)
+	git rev-parse --not $other_branches |
+	
+	msg_count=0;
+	git rev-list --pretty --stdin $revspec |
+	while read onerev
+	do
+		# eval $(printf "$custom_showrev" onerev: $onerev)
+		(( msg_count+=1 ))
+		if [ $msg_count == 5 ]
+		then
+			emailsubject="$onerev"
+			echo "$emailsubject" > "$emailsubject_tmp_file" 
+        fi
+        if [ $msg_count -lt $n ]
+        then
+            echo "$onerev"
+        fi
+	done
+
+    if [ $msg_count -gt $n ]
+    then
+        echo ""
+        echo "..."
+        echo ""
+        echo "Shows only the latest $n log entries."
+    fi
+}
 
 # ---------------------------- main()
 # --- Random number
@@ -682,7 +740,7 @@ then
 fi
 
 recipients=$(git config hooks.mailinglist)
-senderemail=$(git config hooks.senderemail || echo 'zma@fclose.com')
+senderemail=$(git config hooks.senderemail)
 announcerecipients=$(git config hooks.announcelist)
 envelopesender=$(git config hooks.envelopesender)
 emailprefix=$(git config hooks.emailprefix || echo '[GIT] ')
@@ -702,8 +760,9 @@ else
 		generate_email $oldrev $newrev $refname > $email_tmp_file
 		emailsubject=`cat $emailsubject_tmp_file`
 		emailsubject="$emailprefix$projectdesc: $emailsubject"
-        # Note: change the smtp server to yours
-		cat $email_tmp_file | mailx -S smtp="smtp://smtp.cse.ust.hk" -s "$emailsubject" -r $senderemail $recipients 
+        # Note: use the following command if you need smtp and change the smtp server to yours
+		# cat $email_tmp_file | mailx -S smtp="smtp://smtp.cse.ust.hk" -s "$emailsubject" -r $senderemail $recipients 
+		cat $email_tmp_file | mailx -s "$emailsubject" -r $senderemail $recipients 
 
 		rm -f $emailsubject_tmp_file $email_tmp_file
 	done
