@@ -721,6 +721,9 @@ do
     emailsubject_tmp_file="/tmp/git-email-subject-$random_no"
 done
 
+touch $email_tmp_file
+touch $emailsubject_tmp_file
+
 # --- Constants
 LOGBEGIN="- Log -----------------------------------------------------------------"
 LOGEND="-----------------------------------------------------------------------"
