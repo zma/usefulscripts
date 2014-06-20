@@ -3,7 +3,7 @@
 # Install emacs of version $1
 # Author: Eric Zhiqiang Ma (http://www.ericzma.com)
 
-if [ $# -lt 2 ]; then
+if [ $# -lt 1 ]; then
     echo "Usage: $0 version"
     exit 1
 fi
