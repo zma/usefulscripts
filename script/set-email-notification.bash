@@ -10,16 +10,17 @@
 # 3. The post-receive script is in $HOME/ and is set to be executable
 
 # configuration
-senderemail="eric@ericzma.com"
-receiveremails="ericzqma@gmail.com"
+senderemail="git-notification@ericzma.com"
+receiveremails="zma@ericzma.com"
 
 if [ $# -lt 1 ]; then
-    echo "Usage: $0 repo"
+    echo "Usage: $0 repo_dir_name"
+    echo "Example: $0 test.git"
     exit 1
 fi
 
 repo=$1
-repo_dir=$HOME/repositories/$repo.git
+repo_dir=$HOME/repositories/$repo
 
 echo "Set in $repo_dir:"
 
