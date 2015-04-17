@@ -2,23 +2,24 @@
 
 # Eric Zhiqiang Ma (http://www.ericzma.com)
 # Example
-# ./check-cmd-change.bash "(for i in 10.0.3.{2..50}; do echo $i; ssh $i 'dmesg | grep error'; done)" 'mailx -S smtp="smtp://smtp.ust.hk" -s "dmesg error monitor @wiles" -r zma@connect.ust.hk zma@connect.ust.hk'
+# ./check-cmd-change.bash "node-status" "(for i in 10.0.3.{2..50}; do echo $i; ssh $i 'dmesg | grep error'; done)" 'mailx -S smtp="smtp://smtp.ust.hk" -s "dmesg error monitor @wiles" -r zma@connect.ust.hk zma@connect.ust.hk'
 
 if [[ $# < 2 ]]; then
-    echo "Usage: $0 'watched cmd' 'trigger cmd'"
+    echo "Usage: $0 id 'watched cmd' 'trigger cmd'"
     exit 1;
 fi
 
-cmd=$1
-trigger=$2
+id=$1
+cmd=$2
+trigger=$3
 
-oldfile=/tmp/check-cmd-change-old-$USER
-newfile=/tmp/check-cmd-change-new-$USER
-difffile=/tmp/check-cmd-change-diff-$USER
+oldfile=/tmp/check-cmd-change-$id-old-$USER
+newfile=/tmp/check-cmd-change-$id-new-$USER
+difffile=/tmp/check-cmd-change-$id-diff-$USER
 
 for f in $oldfile $newfile; do
     if [ ! -f $f ]; then
-        touch $oldfile
+        touch $f
     fi
 done
 
