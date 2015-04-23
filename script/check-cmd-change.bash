@@ -30,5 +30,5 @@ eval $cmd >$newfile
 diff -u ${oldfile} ${newfile} >$difffile
 if [[ $? == 1 ]]; then
     echo "===============" >>$difffile
-    cat $difffile $newfile | eval $2
+    cat $difffile $newfile | eval $trigger
 fi
