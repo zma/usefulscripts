@@ -11,7 +11,7 @@ else
 fi
 
 # make a backup just in case
-cp $grubcfg /tmp/grub2.cfg-grub2-regen-cfg.bak
+cp $grubcfg $grubcfg-grub2-regen-cfg.bak
 
 # regenerate the config file now
 grub2-mkconfig -o $grubcfg
