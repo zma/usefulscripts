@@ -48,6 +48,11 @@ selected=`echo "$items" | head -n $sel | tail -n1`
 echo "Entry: $selected"
 
 grub2-set-default "$selected"
+
+# make a backup just in case
+cp $grubcfg /tmp/grub2.cfg-grub2-select.bak
+
+# regenerate the config file now
 grub2-mkconfig -o $grubcfg
 
 newdef=`grub2-editenv list`
