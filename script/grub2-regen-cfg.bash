@@ -2,7 +2,7 @@
 
 # Author: Eric Zhiqiang Ma (http://www.ericzma.com)
 # How to use this script:
-# http://www.systutorials.com/3826/setting-default-entry-in-grub2-and-grub/
+# http://www.systutorials.com/136638/how-to-regenerate-grub2-config-file-on-linux/
 
 if [ -d /sys/firmware/efi ]; then
     grubcfg="/etc/grub2-efi.cfg"
