@@ -1,11 +1,19 @@
 #!/bin/bash
 
 # Author: Eric Zhiqiang Ma (http://www.ericzma.com)
+# How to use this script:
+# http://www.systutorials.com/3826/setting-default-entry-in-grub2-and-grub/
+
 # TODO: 
-# print msg that it only works for grub 1
 # fix bug in checking "Invalid selection"
 
-grep "^menuentry" /boot/grub2/grub.cfg | cut -d "'" -f2 >/tmp/grub2-select.entries
+if [ -d /sys/firmware/efi ]; then
+    grubcfg="/etc/grub2-efi.cfg"
+else
+    grubcfg="/etc/grub2.cfg"
+fi
+
+grep "^menuentry" $grubcfg | cut -d "'" -f2 >/tmp/grub2-select.entries
 
 items=`cat /tmp/grub2-select.entries`
 
@@ -40,7 +48,7 @@ selected=`echo "$items" | head -n $sel | tail -n1`
 echo "Entry: $selected"
 
 grub2-set-default "$selected"
-grub2-mkconfig -o /boot/grub2/grub.cfg
+grub2-mkconfig -o $grubcfg
 
 newdef=`grub2-editenv list`
 
