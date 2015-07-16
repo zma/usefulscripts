@@ -5,8 +5,8 @@
 # Written by Eric Zhiqiang Ma ( http://www.ericzma.com )
 
 # Requirment:
-# 1. Use gitolite http://www.fclose.com/5323/how-to-set-up-gitolite-git-server-a-ten-minute-tutorial/
-# 2. Use the script for email notification http://www.fclose.com/1473/setting-up-git-commit-email-notification/
+# 1. Use gitolite http://www.systutorials.com/5323/how-to-set-up-gitolite-git-server-a-ten-minute-tutorial/
+# 2. Use the script for email notification http://www.systutorials.com/1473/setting-up-git-commit-email-notification/
 # 3. The post-receive script is in $HOME/ and is set to be executable
 
 # configuration
