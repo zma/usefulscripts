@@ -1,3 +1,3 @@
 #!/bin/bash
 
-echo "Please use check-cmd-change.sh instead."
+echo "Please use event-driver-cmd/check-cmd-change.sh instead."
