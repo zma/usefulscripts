@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# Get file statistics of size, disk usage and checksum
+
+# By: Eric Zhiqiang Ma (http://www.ericzma.com)
+
+function usage ()
+{
+    echo "$0 [-n] file"
+    echo "  -n: no checksum"
+}
+
+# parse options
+
+file=""
+cal_sum="true"
+
+while getopts "n" o; do
+    case "${o}" in
+        n)
+            cal_sum="false"
+            ;;
+        *)
+            file=${o}
+            ;;
+    esac
+done
+shift $((OPTIND-1))
+
+file=$1
+
+# check options
+
+if [[ "$file" == "" ]] ; then
+    usage
+    exit 1
+fi
+
+size=`wc -c $1 | cut -d' ' -f1`
+duh=`du -h $1 | cut -f1`
+
+res="File: $1, size: $size bytes, du: $duh bytes"
+
+if [[ "$cal_sum" == "true" ]]; then
+    sha1sum=`sha1sum $1 | cut -d' ' -f1`
+    res="$res, sha1sum: $sha1sum"
+fi
+
+echo "$res"
+
