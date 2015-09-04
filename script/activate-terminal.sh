@@ -8,7 +8,7 @@
 
 # Required tools: xdotool
 
-state_file="/dev/shm/actiavte-termianl.term.$USER"
+stat_file="/dev/shm/actiavte-termianl.term.$USER"
 termtype="Terminal"
 wait_sec=1
 max_wait_cnt=4
@@ -48,11 +48,13 @@ create_terminal () {
 
     echo "Created terminal window $term"
     # save the state
-    echo "$term" >$state_file
+    echo "$term" >$stat_file
 }
 
 # read the state
-term=$(cat $state_file)
+if [ -f $stat_file ]; then
+    term=$(cat $stat_file)
+fi
 
 # check whether it exists
 term_exists "$term"
