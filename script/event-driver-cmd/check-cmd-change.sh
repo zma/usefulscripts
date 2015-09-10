@@ -3,45 +3,34 @@
 # Eric Zhiqiang Ma (http://www.ericzma.com)
 
 # Example
-# ./check-cmd-change.bash "node-status" "/paht/cmd/may/timeout" 'mailx -S smtp="smtp://smtp.ust.hk" -s "cmd timeout @`hostname`" -r zma@connect.ust.hk zma@connect.ust.hk'
+# ./check-cmd-change.bash "node-status" "(for i in 10.0.3.{2..50}; do echo $i; ssh $i 'dmesg | grep error'; done)" 'mailx -S smtp="smtp://smtp.ust.hk" -s "dmesg error monitor @wiles" -r zma@connect.ust.hk zma@connect.ust.hk'
 
-killtree() {
-    # echo "kill $@"
-    local _pid=$1
-    local _sig=${2:-TERM}
-    # kill -stop ${_pid} # needed to stop quickly forking parent from producing children between child killing and parent killing
-    for _child in $(ps -o pid --no-headers --ppid ${_pid}); do
-        killtree ${_child} ${_sig}
-    done
-    kill -${_sig} ${_pid}
-}
-
-if [[ $# < 2 ]]; then
-    echo "Usage: $0 id 'watched cmd' timeout_in_seconds 'trigger cmd'"
+if [[ $# < 3 ]]; then
+    echo "Usage: $0 id 'watched cmd' 'trigger cmd'"
     exit 1;
 fi
 
 id=$1
 cmd=$2
-timeout=$3
-trigger=$4
+trigger=$3
 
-stdoutfile=/tmp/check-cmd-timeout-$id-$USER
+oldfile=/tmp/check-cmd-change-$id-old-$USER
+newfile=/tmp/check-cmd-change-$id-new-$USER
+difffile=/tmp/check-cmd-change-$id-diff-$USER
 
-for f in $stdoutfile ; do
+for f in $oldfile $newfile; do
     if [ ! -f $f ]; then
         touch $f
     fi
 done
 
-pidFile=/tmp/check-cmd-timeout-pid-$id-$USER
+mv $newfile $oldfile
 
-( eval $cmd 2>&1 >$stdoutfile ; rm $pidFile ; ) &
-pid=$!
-echo $pid > $pidFile
+eval $cmd >$newfile
 
-( sleep $timeout ; if [[ -e $pidFile ]]; then eval $trigger; killtree $pid ; fi ; ) &
-killerPid=$!
-
-wait $pid && kill $killerPid
+diff -u ${oldfile} ${newfile} >$difffile
+if [[ $? == 1 ]]; then
+    echo "===============" >>$difffile
+    cat $difffile $newfile | eval $trigger
+fi
 
