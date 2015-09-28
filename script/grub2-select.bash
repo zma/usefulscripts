@@ -4,7 +4,7 @@
 # How to use this script:
 # http://www.systutorials.com/3826/setting-default-entry-in-grub2-and-grub/
 
-# TODO: 
+# TODO:
 # fix bug in checking "Invalid selection"
 
 if [ -d /sys/firmware/efi ]; then
@@ -27,27 +27,33 @@ do
     echo "$items" | head -n $j | tail -n1
 done
 
-olddef=`grub2-editenv list`
+# olddef=`grub2-editenv list`
+#
+# echo "Old default:"
+# echo $olddef
 
-echo "Old default:"
-echo $olddef
-
-echo "Your select: "
+echo -n "Your select: "
 read sel
 
-if [ $sel -lt "0" ] && [ $sel -ge $linen ]
-then
+if [ $sel -lt "0" ] && [ $sel -ge $linen ]; then
     echo "Invalid selection"
     exit 0
 fi
 
-echo "You select $sel"
+# echo "You select $sel"
 
 selected=`echo "$items" | head -n $sel | tail -n1`
 
-echo "Entry: $selected"
+echo "Entry selected: $selected"
 
-grub2-set-default "$selected"
+# grub2-set-default "$selected"
+
+# change the default entry in /etc/default/grub
+# save a copy first
+cp /etc/default/grub /etc/default/grub-grub2-select.bak
+
+# change the default entry now
+sed -i "s/GRUB_DEFAULT=\".*\"/GRUB_DEFAULT=\"$selected\"/g" /etc/default/grub
 
 # make a backup just in case
 cp $grubcfg $grubcfg-grub2-select.bak
@@ -55,8 +61,8 @@ cp $grubcfg $grubcfg-grub2-select.bak
 # regenerate the config file now
 grub2-mkconfig -o $grubcfg
 
-newdef=`grub2-editenv list`
+# newdef=`grub2-editenv list`
 
-echo "New default:"
-echo $newdef
+# echo "New default:"
+# echo $newdef
 
