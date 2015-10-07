@@ -56,13 +56,16 @@ grub2-set-default "$selected"
 cp /etc/default/grub /etc/default/grub-grub2-select.bak
 
 # change the default entry now
-sed -i "s/GRUB_DEFAULT=\".*\"/GRUB_DEFAULT=\"$selected\"/g" /etc/default/grub
+sed -i "s/GRUB_DEFAULT=.*/GRUB_DEFAULT=\"$selected\"/g" /etc/default/grub
 
 # make a backup just in case
 cp $grubcfg $grubcfg-grub2-select.bak
 
 # regenerate the config file now
-grub2-mkconfig -o $grubcfg
+# grub2-mkconfig of some versions do not respect the symbolic links
+# so generate to a tmporary file and then use cp to update the grubcfg file
+tmpfile=/tmp/$(basename $0)-grub2.cfg
+grub2-mkconfig -o $tmpfile && cp $tmpfile $grubcfg
 
 # newdef=`grub2-editenv list`
 
