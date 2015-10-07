@@ -46,7 +46,10 @@ selected=`echo "$items" | head -n $sel | tail -n1`
 
 echo "Entry selected: $selected"
 
-# grub2-set-default "$selected"
+# set-default and change default entry files
+# to make double insurance. Seems not every versions of grub2 respect
+# both.
+grub2-set-default "$selected"
 
 # change the default entry in /etc/default/grub
 # save a copy first
