@@ -1,8 +1,10 @@
 #!/bin/bash
 #
+# License: GPLv2
+#
 # Changed by Eric Zhiqiang Ma http://www.ericzma.com
 # Howto use this script: http://www.fclose.com/1473/setting-up-git-commit-email-notification/
-# 
+#
 # Copyright (c) 2007 Andy Parkins
 #
 # An example hook script to mail out commit update information.  This hook
@@ -645,7 +647,7 @@ show_new_revisions()
         if [ $msg_count == 5 ]
         then
             emailsubject="$onerev"
-            echo "$emailsubject" > "$emailsubject_tmp_file" 
+            echo "$emailsubject" > "$emailsubject_tmp_file"
         fi
         echo "$onerev"
     done
@@ -691,7 +693,7 @@ show_n_new_revisions()
         if [ $msg_count == 5 ]
         then
             emailsubject="$onerev"
-            echo "$emailsubject" > "$emailsubject_tmp_file" 
+            echo "$emailsubject" > "$emailsubject_tmp_file"
         fi
         if [ $msg_count -lt $n ]
         then
@@ -767,8 +769,8 @@ else
         emailsubject=`cat $emailsubject_tmp_file`
         emailsubject="$emailprefix $projectdesc, $refname_type $short_refname ${change_type}d: $emailsubject"
         # Note: use the following command if you need smtp and change the smtp server to yours
-        # cat $email_tmp_file | mailx -S smtp="smtp://smtp.cse.ust.hk" -s "$emailsubject" -r $senderemail $recipients 
-        cat $email_tmp_file | mailx -s "$emailsubject" -r $senderemail $recipients 
+        # cat $email_tmp_file | mailx -S smtp="smtp://smtp.cse.ust.hk" -s "$emailsubject" -r $senderemail $recipients
+        cat $email_tmp_file | mailx -s "$emailsubject" -r $senderemail $recipients
 
         rm -f $emailsubject_tmp_file $email_tmp_file
     done
