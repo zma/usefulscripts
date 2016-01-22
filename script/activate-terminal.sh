@@ -8,10 +8,17 @@
 
 # Required tools: xdotool
 
+terminal="gnome-terminal"
 stat_file="/dev/shm/actiavte-termianl.term.$USER"
 termtype="Terminal"
 wait_sec=1
 max_wait_cnt=4
+
+# parse options first
+if [ "$1" != "" ]; then
+    terminal="$1"
+fi
+
 
 term_exists () {
     allterms=`xdotool search --class "$termtype"`
@@ -21,7 +28,7 @@ term_exists () {
 
 create_terminal () {
     echo "Create new terminal"
-    gnome-terminal --maximize &
+    $terminal --maximize &
 
     exists=1
     wait_cnt=0
