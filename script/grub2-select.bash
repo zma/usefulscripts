@@ -35,6 +35,11 @@ done
 echo -n "Your select: "
 read sel
 
+if [[ "$sel" == "" ]]; then
+    echo "Invalid selection"
+    exit 0
+fi
+
 if [ $sel -lt "0" ] && [ $sel -ge $linen ]; then
     echo "Invalid selection"
     exit 0
