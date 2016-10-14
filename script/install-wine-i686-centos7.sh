@@ -2,6 +2,8 @@
 
 # Author: Eric Zhiqiang Ma (zma@ericzma.com)
 
+set -o errexit
+
 # Install
 
 ver=1.8.5
@@ -13,8 +15,8 @@ yum erase wine wine-*
 echo "Install wine building tools..."
 
 yum groupinstall 'Development Tools'
-
 yum install libjpeg-turbo-devel libtiff-devel
+yum install libgcc.i686 libX11-devel.i686 freetype-devel.i686
 
 echo "Download and unpack the wine source package..."
 
@@ -24,7 +26,7 @@ tar xjf wine-${ver}.tar.bz2
 
 echo "Build wine..."
 cd wine-${ver}/
-mkdir wine32 wine64
+mkdir -p wine32 wine64
 
 echo "   build wine64..."
 cd wine64
