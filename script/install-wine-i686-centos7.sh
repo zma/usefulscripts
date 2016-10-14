@@ -26,7 +26,7 @@ echo "Install wine building tools..." | tee -a $log
 
 yum groupinstall 'Development Tools' -y 2>&1 >> $log
 yum install libjpeg-turbo-devel libtiff-devel -y 2>&1 >> $log
-yum install libgcc.i686 libX11-devel.i686 freetype-devel.i686 gnutls-devel.i686 libxml2-devel -y 2>&1 >> $log
+yum install libgcc.i686 libX11-devel.i686 freetype-devel.i686 gnutls-devel.i686 libxml2-devel.i686 -y 2>&1 >> $log
 
 echo "Download and unpack the wine source package..." 2>&1 | tee -a $log
 
