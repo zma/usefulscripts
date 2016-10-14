@@ -1,53 +1,63 @@
 #!/bin/bash
 
+# Download, build and install wine 32-bit on CentOS 7
+
+# For details of this script, please check
+# http://www.systutorials.com/239913/install-32-bit-wine-1-8-centos-7/
+
 # Author: Eric Zhiqiang Ma (zma@ericzma.com)
 
 set -o errexit
+
+log=`mktemp -t install-wine.XXXXXX.log`
 
 # Install
 
 ver=1.8.5
 
-echo "Uninstall old wine64 if you have installed it..."
+echo "Hello there. Start to download, build and install wine $ver 32-bit and 64-bit versions..." | tee $log
+echo "Logs are in $log" | tee -a $log
+
+echo "Uninstall old wine64 if you have installed it. Please select yes..." | tee -a $log
 
 yum erase wine wine-*
 
-echo "Install wine building tools..."
+echo "Install wine building tools..." | tee -a $log
 
-yum groupinstall 'Development Tools'
-yum install libjpeg-turbo-devel libtiff-devel
-yum install libgcc.i686 libX11-devel.i686 freetype-devel.i686
+yum groupinstall 'Development Tools' -y 2>&1 >> $log
+yum install libjpeg-turbo-devel libtiff-devel -y 2>&1 >> $log
+yum install libgcc.i686 libX11-devel.i686 freetype-devel.i686 -y 2>&1 >> $log
 
-echo "Download and unpack the wine source package..."
+echo "Download and unpack the wine source package..." 2>&1 | tee -a $log
 
-cd /usr/src
-wget http://dl.winehq.org/wine/source/1.8/wine-${ver}.tar.bz2 -O wine-${ver}.tar.bz2
-tar xjf wine-${ver}.tar.bz2
+cd /usr/src 2>&1 >> $log
+wget http://dl.winehq.org/wine/source/1.8/wine-${ver}.tar.bz2 -O wine-${ver}.tar.bz2 2>&1 >> $log
+tar xjf wine-${ver}.tar.bz2 2>&1 >> $log
 
-echo "Build wine..."
-cd wine-${ver}/
-mkdir -p wine32 wine64
+echo "Build wine..." 2>&1 | tee -a $log
+cd wine-${ver}/ 2>&1 >> $log
+mkdir -p wine32 wine64 2>&1 >> $log
 
-echo "   build wine64..."
-cd wine64
-../configure --enable-win64
-make -j 4
+echo "   build wine64..." 2>&1 | tee -a $log
+cd wine64 2>&1 >> $log
+../configure --enable-win64 2>&1 >> $log
+make -j 4 2>&1 >> $log
 
-echo "   build wine32..."
-cd ../wine32
-../configure --with-wine64=../wine64
-make -j 4
+echo "   build wine32..." 2>&1 | tee -a $log
+cd ../wine32 2>&1 >> $log
+../configure --with-wine64=../wine64 2>&1 >> $log
+make -j 4 2>&1 >> $log
 
-echo "Install wine..."
-echo "   install wine32..."
-make install
+echo "Install wine..." 2>&1 | tee -a $log
+echo "   install wine32..." 2>&1 | tee -a $log
+make install 2>&1 >> $log
 
-echo "   install wine64..."
-cd ../wine64
-make install
+echo "   install wine64..." 2>&1 | tee -a $log
+cd ../wine64 2>&1 >> $log
+make install 2>&1 >> $log
 
-echo "Congratulation! All are done. Enjoy!"
-
+echo "Congratulation! All are done. Enjoy!" 2>&1 | tee -a $log
+rm -f $log
 
 # # Uninstall
 # cd /usr/src/wine-${ver}/wine32
