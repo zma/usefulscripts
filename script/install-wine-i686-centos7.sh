@@ -3,7 +3,7 @@
 # Download, build and install wine 32-bit on CentOS 7
 
 # For details of this script, please check
-# http://www.systutorials.com/239913/install-32-bit-wine-1-8-centos-7/
+# https://www.systutorials.com/239913/install-32-bit-wine-1-8-centos-7/
 
 # Author: Eric Zhiqiang Ma (zma@ericzma.com)
 
@@ -27,7 +27,7 @@ echo "Install wine building tools..." | tee -a $log
 yum install samba-winbind-clients -y 2>&1 >>$log
 yum groupinstall 'Development Tools' -y 2>&1 >> $log
 yum install libjpeg-turbo-devel libtiff-devel freetype-devel -y 2>&1 >> $log
-yum install glibc-devel.{i686,x86_64} libgcc.{i686,x86_64} libX11-devel.{i686,x86_64} freetype-devel.{i686,x86_64} gnutls-devel.{i686,x86_64} libxml2-devel.{i686,x86_64} libjpeg-turbo-devel.{i686,x86_64} libpng-devel.{i686,x86_64} libXrender-devel.{i686,x86_64} -y 2>&1 >> $log
+yum install glibc-devel.{i686,x86_64} libgcc.{i686,x86_64} libX11-devel.{i686,x86_64} freetype-devel.{i686,x86_64} gnutls-devel.{i686,x86_64} libxml2-devel.{i686,x86_64} libjpeg-turbo-devel.{i686,x86_64} libpng-devel.{i686,x86_64} libXrender-devel.{i686,x86_64} alsa-libs-devel.{i686,x86_64} -y 2>&1 >> $log
 
 echo "Download and unpack the wine source package..." 2>&1 | tee -a $log
 
