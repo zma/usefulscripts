@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 
 # Written by Eric Zhiqiang Ma (http://www.ericzma.com)
-# Last update: Jul. 9, 2014
 
-# Read the tutorials at
-# http://www.systutorials.com/5475/turning-gnome-terminal-to-a-pop-up-terminal/
+# For an introduction and how to use ths tool, please check
+# https://www.systutorials.com/5475/turning-gnome-terminal-to-a-pop-up-terminal/
 
 # Required tools: xdotool
 
@@ -13,12 +12,16 @@ stat_file="/dev/shm/actiavte-termianl.term.$USER"
 termtype="Terminal"
 wait_sec=1
 max_wait_cnt=4
+slot=0
+
+usage() {
+  echo "$0 [--terminal <terminal cmd> --slot <slot id>]"
+}
 
 # parse options first
 if [ "$1" != "" ]; then
     terminal="$1"
 fi
-
 
 term_exists () {
     allterms=`xdotool search --class "$termtype"`
