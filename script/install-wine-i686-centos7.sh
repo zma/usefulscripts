@@ -29,7 +29,7 @@ echo "Install wine building tools..." | tee -a $log
 yum install samba-winbind-clients -y 2>&1 >>$log
 yum groupinstall 'Development Tools' -y 2>&1 >> $log
 yum install libjpeg-turbo-devel libtiff-devel freetype-devel -y 2>&1 >> $log
-yum install glibc-devel.{i686,x86_64} libgcc.{i686,x86_64} libX11-devel.{i686,x86_64} freetype-devel.{i686,x86_64} gnutls-devel.{i686,x86_64} libxml2-devel.{i686,x86_64} libjpeg-turbo-devel.{i686,x86_64} libpng-devel.{i686,x86_64} libXrender-devel.{i686,x86_64} alsa-lib-devel.{i686,x86_64} -y 2>&1 >> $log
+yum install glibc-devel.{i686,x86_64} libgcc.{i686,x86_64} libX11-devel.{i686,x86_64} freetype-devel.{i686,x86_64} gnutls-devel.{i686,x86_64} libxml2-devel.{i686,x86_64} libjpeg-turbo-devel.{i686,x86_64} libpng-devel.{i686,x86_64} libXrender-devel.{i686,x86_64} alsa-lib-devel.{i686,x86_64} glib2-devel.{i686,x86_64} -y 2>&1 >> $log
 
 # Thanks to David https://www.systutorials.com/239913/install-32-bit-wine-1-8-centos-7/#comment-156429
 yum install glibc-devel libstdc++-devel icoutils openal-soft-devel prelink gstreamer-plugins-base-devel gstreamer-devel ImageMagick-devel fontpackages-devel libv4l-devel gsm-devel giflib-devel libXxf86dga-devel mesa-libOSMesa-devel isdn4k-utils-devel libgphoto2-devel fontforge libusb-devel lcms2-devel audiofile-devel -y 2>&1 >> $log
@@ -55,7 +55,7 @@ make -j 4 2>&1 >> $log
 
 echo "   build wine32..." 2>&1 | tee -a $log
 cd ../wine32 2>&1 >> $log
-../configure --with-wine64=../wine64 2>&1 >> $log
+PKG_CONFIG_PATH=/usr/lib/pkgconfig ../configure --with-wine64=../wine64 2>&1 >> $log
 make -j 4 2>&1 >> $log
 
 echo "Install wine..." 2>&1 | tee -a $log
