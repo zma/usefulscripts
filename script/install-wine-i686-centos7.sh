@@ -15,9 +15,11 @@ log=`mktemp -t install-wine.XXXXXX.log`
 
 ver=1.8.5
 
-echo "Hello there. Start to download, build and install wine $ver 32-bit and 64-bit versions..." | tee $log
+date > $log
+echo "Hello there. Start to download, build and install wine $ver 32-bit and 64-bit versions..." | tee -a $log
 echo "Logs are in $log" | tee -a $log
 
+echo "Please make sure you have EPEL and Nux Desktop repositories configured. Check https://www.systutorials.com/239893/additional-repositories-centos-linux/ for howto." | tee -a $log
 echo "Uninstall old wine64 if you have installed it. Please select yes..." | tee -a $log
 
 yum erase wine wine-*
