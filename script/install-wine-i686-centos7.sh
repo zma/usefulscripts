@@ -13,7 +13,7 @@ log=`mktemp -t install-wine.XXXXXX.log`
 
 # Install
 
-ver=1.8.5
+ver=1.8.7
 if [[ "$1" != "" ]]; then
   ver=$1
 fi
