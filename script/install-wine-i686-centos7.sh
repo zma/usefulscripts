@@ -14,9 +14,15 @@ log=`mktemp -t install-wine.XXXXXX.log`
 # Install
 
 ver=1.8.5
+if [[ "$1" != "" ]]; then
+  ver=$1
+fi
+
+vermajor=$(echo ${ver} | cut -d'.' -f1)
+verurlstr=$(echo ${ver} | cut -d'.' -f1,2)
 
 date > $log
-echo "Hello there. Start to download, build and install wine $ver 32-bit and 64-bit versions..." | tee -a $log
+echo "Hello there. Start to download, build and install wine $ver 32-bit version..." | tee -a $log
 echo "Logs are in $log" | tee -a $log
 
 echo "Please make sure you have EPEL and Nux Desktop repositories configured. Check https://www.systutorials.com/239893/additional-repositories-centos-linux/ for howto." | tee -a $log
@@ -38,11 +44,21 @@ yum install openldap-devel libxslt-devel libXcursor-devel libXi-devel libXxf86vm
 
 yum install glibc-devel.i686 dbus-devel.i686 freetype-devel.i686 pulseaudio-libs-devel.i686 libX11-devel.i686 mesa-libGLU-devel.i686 libICE-devel.i686 libXext-devel.i686 libXcursor-devel.i686 libXi-devel.i686 libXxf86vm-devel.i686 libXrender-devel.i686 libXinerama-devel.i686 libXcomposite-devel.i686 libXrandr-devel.i686 mesa-libGL-devel.i686 mesa-libOSMesa-devel.i686 libxml2-devel.i686 libxslt-devel.i686 zlib-devel.i686 gnutls-devel.i686 ncurses-devel.i686 sane-backends-devel.i686 libv4l-devel.i686 libgphoto2-devel.i686 libexif-devel.i686 lcms2-devel.i686 gettext-devel.i686 isdn4k-utils-devel.i686 cups-devel.i686 fontconfig-devel.i686 gsm-devel.i686 libjpeg-turbo-devel.i686 pkgconfig.i686 libtiff-devel.i686 unixODBC.i686 openldap-devel.i686 alsa-lib-devel.i686 audiofile-devel.i686 freeglut-devel.i686 giflib-devel.i686 gstreamer-devel.i686 gstreamer-plugins-base-devel.i686 libXmu-devel.i686 libXxf86dga-devel.i686 libieee1284-devel.i686 libpng-devel.i686 librsvg2-devel.i686 libstdc++-devel.i686 libusb-devel.i686 unixODBC-devel.i686 qt-devel.i686 libpcap-devel.i686 -y 2>&1 >> $log
 
+if [[ "${vermajor}" == "2" ]]; then
+  # for wine 2
+  yum install gstreamer1-plugins-base-devel.{x86_64,i686} gstreamer1-devel.{x86_64,i686} -y 2>&1 >> $log
+fi
+
 echo "Download and unpack the wine source package..." 2>&1 | tee -a $log
 
 cd /usr/src 2>&1 >> $log
-wget http://dl.winehq.org/wine/source/1.8/wine-${ver}.tar.bz2 -O wine-${ver}.tar.bz2 2>&1 >> $log
-tar xjf wine-${ver}.tar.bz2 2>&1 >> $log
+if [[ "${vermajor}" == "1" ]]; then
+  wget http://dl.winehq.org/wine/source/${verurlstr}/wine-${ver}.tar.bz2 -O wine-${ver}.tar.bz2 2>&1 >> $log
+  tar xjf wine-${ver}.tar.bz2 2>&1 >> $log
+elif [[ "${vermajor}" == "2" ]]; then
+  wget http://dl.winehq.org/wine/source/${verurlstr}/wine-${ver}.tar.xz -O wine-${ver}.tar.xz 2>&1 >> $log
+  tar xf wine-${ver}.tar.xz 2>&1 >> $log
+fi
 
 echo "Build wine..." 2>&1 | tee -a $log
 cd wine-${ver}/ 2>&1 >> $log
