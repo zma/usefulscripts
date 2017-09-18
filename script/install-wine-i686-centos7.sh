@@ -46,7 +46,8 @@ yum install glibc-devel.i686 dbus-devel.i686 freetype-devel.i686 pulseaudio-libs
 
 if [[ "${vermajor}" == "2" ]]; then
   # for wine 2
-  yum install gstreamer1-plugins-base-devel.{x86_64,i686} gstreamer1-devel.{x86_64,i686} -y 2>&1 >> $log
+  # Thanks to gretzware https://www.systutorials.com/239913/install-32-bit-wine-1-8-centos-7/#comment-157977
+  yum install gstreamer1-plugins-base-devel.{x86_64,i686} gstreamer1-devel.{x86_64,i686} systemd-devel.{x86_64,i686} -y 2>&1 >> $log
 fi
 
 echo "Download and unpack the wine source package..." 2>&1 | tee -a $log
