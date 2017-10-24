@@ -1,26 +1,32 @@
 #!/bin/bash
 
+# Interactively send emails using `mail`'s default way (`sendmail`).
+
+# License: GPLv3
+
+# Authors:
+# NerdOfCode ( https://github.com/NerdOfCode )
+# Eric Z Ma ( http://www.ericzma.com )
+
 #for saving the mail temporarily
 random=$RANDOM
 
 #Mail related functionality
-mail=$(which mailutils)
+mail=$(which mail)
 mail_status=$?
-check_ser=$(which postfix)
+check_ser=$(which sendmail)
 check_ser_status=$?
 temp_d=/tmp/
 mail_ext=.mail
 
-#Checking GUI related functions
-gui_check="$(startx >/dev/null 2>&1)"
-gui_status=$?
+# #Checking GUI related functions
+# gui_check="$(startx >/dev/null 2>&1)"
+# gui_status=$?
 
-
-echo -e "THIS PROGRAM IS OF NO WARRANTY!!! I AM NOT RESPONSIBLE FOR ANY 
+echo -e "THIS PROGRAM IS OF NO WARRANTY!!! I AM NOT RESPONSIBLE FOR ANY
 MISUSES OF IT. THIS SCRIPT IS SOLELY FOR EDUCATIONAL PURPOSES \n \n"
 sleep 5
 clear
-
 
 if [ $mail_status != 0 ]
 then
@@ -36,15 +42,14 @@ then
 	exit 1
 fi
 
-if [ $gui_status == 0 ]
-then
-	echo "WARNING!!! Running on home Computer is highly not recommended due to the increased chance of being mislead as spam"
-	sleep 2
-	exit 1
-fi
+# if [ $gui_status == 0 ]
+# then
+# 	echo "WARNING!!! Running on home Computer is highly not recommended due to the increased chance of being mislead as spam"
+# 	sleep 2
+# 	exit 1
+# fi
 
-
-read -p "Enter from address: " from 
+read -p "Enter from address: " from
 read -p "Enter receiving address: " receive
 read -p "Enter subject: " subject
 echo "Enter message in one second: "
@@ -57,7 +62,7 @@ read -p "Ready to send? (yes): " send
 
 if [ $send == "yes" ]
 then
-	echo $body | mail -aFrom:$from -s "$subject" $receive
+	echo $body | MAILRC=/dev/null mail -r $from -s "$subject" $receive
 	exit 0
 else
 	echo "The body of your message was stored here: $temp_d$random$mail_ext"
