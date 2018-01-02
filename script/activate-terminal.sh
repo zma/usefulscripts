@@ -18,7 +18,22 @@ usage() {
 }
 
 # parse options first
-# TODO
+while (($# > 1)); do
+  key=$1
+  shift
+  case "$key" in
+    --terminal)
+      terminal=$1
+      shift
+      ;;
+    --slot)
+      slot=$1
+      shift
+      ;;
+    *)
+      ;;
+  esac
+done
 
 # assign values
 stat_file="/dev/shm/actiavte-termianl.term.$USER.${slot}"
