@@ -14,9 +14,9 @@ id=$1
 cmd=$2
 trigger=$3
 
-oldfile=/tmp/check-cmd-change-$id-old-$USER
-newfile=/tmp/check-cmd-change-$id-new-$USER
-difffile=/tmp/check-cmd-change-$id-diff-$USER
+oldfile=/var/tmp/check-cmd-change-$id-old-$USER
+newfile=/var/tmp/check-cmd-change-$id-new-$USER
+difffile=/var/tmp/check-cmd-change-$id-diff-$USER
 
 for f in $oldfile $newfile; do
     if [ ! -f $f ]; then
