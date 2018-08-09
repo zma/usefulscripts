@@ -9,12 +9,13 @@
 
 terminal="gnome-terminal"
 termtype="Terminal"
+maxterm=false
 wait_sec=1
 max_wait_cnt=4
 slot=0
 
 usage() {
-  echo "$0 [--terminal <terminal cmd> --slot <slot id>]"
+  echo "$0 [--terminal <terminal cmd> --maximize <true or false> --slot <slot id>]"
 }
 
 # parse options first
@@ -28,6 +29,10 @@ while (($# > 1)); do
       ;;
     --slot)
       slot=$1
+      shift
+      ;;
+    --maximize)
+      maxterm=$1
       shift
       ;;
     *)
@@ -46,7 +51,11 @@ term_exists () {
 
 create_terminal () {
   echo "Create new terminal"
-  $terminal --maximize &
+  if [[ "${maxterm}" == "true" ]]; then
+    $terminal --maximize &
+  else
+    $terminal &
+  fi
 
   exists=1
   wait_cnt=0
