@@ -2,8 +2,8 @@
 #
 # License: GPLv2
 #
-# Changed by Eric Zhiqiang Ma http://www.ericzma.com
-# Howto use this script: http://www.fclose.com/1473/setting-up-git-commit-email-notification/
+# Changed by Eric Z. Ma https://www.ericzma.com
+# Howto use this script: https://www.systutorials.com/1473/setting-up-git-commit-email-notification/
 #
 # Copyright (c) 2007 Andy Parkins
 #
@@ -748,7 +748,7 @@ then
 fi
 
 recipients=$(git config hooks.mailinglist)
-senderemail=$(git config hooks.senderemail)
+# senderemail=$(git config hooks.senderemail)
 announcerecipients=$(git config hooks.announcelist)
 envelopesender=$(git config hooks.envelopesender)
 emailprefix=$(git config hooks.emailprefix || echo '[GIT]')
@@ -770,7 +770,9 @@ else
         emailsubject="$emailprefix $projectdesc, $refname_type $short_refname ${change_type}d: $emailsubject"
         # Note: use the following command if you need smtp and change the smtp server to yours
         # cat $email_tmp_file | mailx -S smtp="smtp://smtp.cse.ust.hk" -s "$emailsubject" -r $senderemail $recipients
-        cat $email_tmp_file | mailx -s "$emailsubject" -r $senderemail $recipients
+        # cat $email_tmp_file | mailx -s "$emailsubject" -r $senderemail $recipients
+        # some smtp provider disallows using a sender email different from the auth account
+        cat $email_tmp_file | mailx -s "$emailsubject" $recipients
 
         rm -f $emailsubject_tmp_file $email_tmp_file
     done
