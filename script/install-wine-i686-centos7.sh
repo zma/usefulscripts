@@ -9,11 +9,14 @@
 
 set -o errexit
 
+# Constants
 log=`mktemp -t install-wine.XXXXXX.log`
+NPROC=$(nproc)
+CFLAGS="-g -O2 -std=gnu99"
+wine2up="2 3 4" # wine 2 and up
+ver=4.0.1       # last stable version on 2019-05-15
 
 # Install
-
-ver=1.8.7
 if [[ "$1" != "" ]]; then
   ver=$1
 fi
@@ -44,8 +47,8 @@ yum install openldap-devel libxslt-devel libXcursor-devel libXi-devel libXxf86vm
 
 yum install glibc-devel.i686 dbus-devel.i686 freetype-devel.i686 pulseaudio-libs-devel.i686 libX11-devel.i686 mesa-libGLU-devel.i686 libICE-devel.i686 libXext-devel.i686 libXcursor-devel.i686 libXi-devel.i686 libXxf86vm-devel.i686 libXrender-devel.i686 libXinerama-devel.i686 libXcomposite-devel.i686 libXrandr-devel.i686 mesa-libGL-devel.i686 mesa-libOSMesa-devel.i686 libxml2-devel.i686 libxslt-devel.i686 zlib-devel.i686 gnutls-devel.i686 ncurses-devel.i686 sane-backends-devel.i686 libv4l-devel.i686 libgphoto2-devel.i686 libexif-devel.i686 lcms2-devel.i686 gettext-devel.i686 isdn4k-utils-devel.i686 cups-devel.i686 fontconfig-devel.i686 gsm-devel.i686 libjpeg-turbo-devel.i686 pkgconfig.i686 libtiff-devel.i686 unixODBC.i686 openldap-devel.i686 alsa-lib-devel.i686 audiofile-devel.i686 freeglut-devel.i686 giflib-devel.i686 gstreamer-devel.i686 gstreamer-plugins-base-devel.i686 libXmu-devel.i686 libXxf86dga-devel.i686 libieee1284-devel.i686 libpng-devel.i686 librsvg2-devel.i686 libstdc++-devel.i686 libusb-devel.i686 unixODBC-devel.i686 qt-devel.i686 libpcap-devel.i686 -y 2>&1 >> $log
 
-if [[ "${vermajor}" == "2" ]]; then
-  # for wine 2
+if [[ "${wine2up}" =~ "${vermajor}" ]]; then
+  # for wine 2 and up
   # Thanks to gretzware https://www.systutorials.com/239913/install-32-bit-wine-1-8-centos-7/#comment-157977
   yum install gstreamer1-plugins-base-devel.{x86_64,i686} gstreamer1-devel.{x86_64,i686} systemd-devel.{x86_64,i686} -y 2>&1 >> $log
 
@@ -59,7 +62,7 @@ cd /usr/src 2>&1 >> $log
 if [[ "${vermajor}" == "1" ]]; then
   wget http://dl.winehq.org/wine/source/${verurlstr}/wine-${ver}.tar.bz2 -O wine-${ver}.tar.bz2 2>&1 >> $log
   tar xjf wine-${ver}.tar.bz2 2>&1 >> $log
-elif [[ "${vermajor}" == "2" ]]; then
+elif [[ "${wine2up}" =~ "${vermajor}" ]]; then
   wget http://dl.winehq.org/wine/source/${verurlstr}/wine-${ver}.tar.xz -O wine-${ver}.tar.xz 2>&1 >> $log
   tar xf wine-${ver}.tar.xz 2>&1 >> $log
 fi
@@ -70,13 +73,13 @@ mkdir -p wine32 wine64 2>&1 >> $log
 
 echo "   build wine64..." 2>&1 | tee -a $log
 cd wine64 2>&1 >> $log
-../configure --enable-win64 2>&1 >> $log
-make -j 4 2>&1 >> $log
+../configure --enable-win64 CFLAGS="${CFLAGS}" 2>&1 >> $log
+make -j $NPROC 2>&1 >> $log
 
 echo "   build wine32..." 2>&1 | tee -a $log
 cd ../wine32 2>&1 >> $log
-PKG_CONFIG_PATH=/usr/lib/pkgconfig ../configure --with-wine64=../wine64 2>&1 >> $log
-make -j 4 2>&1 >> $log
+PKG_CONFIG_PATH=/usr/lib/pkgconfig ../configure --with-wine64=../wine64 CFLAGS="${CFLAGS}" 2>&1 >> $log
+make -j $NPROC 2>&1 >> $log
 
 echo "Install wine..." 2>&1 | tee -a $log
 echo "   install wine32..." 2>&1 | tee -a $log
