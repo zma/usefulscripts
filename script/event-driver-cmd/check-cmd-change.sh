@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Eric Zhiqiang Ma (http://www.ericzma.com)
+# Eric Ma (http://www.ericzma.com)
 
 # Example
-# ./check-cmd-change.bash "node-status" "(for i in 10.0.3.{2..50}; do echo $i; ssh $i 'dmesg | grep error'; done)" 'mailx -S smtp="smtp://smtp.ust.hk" -s "dmesg error monitor @wiles" -r zma@connect.ust.hk zma@connect.ust.hk'
+# ./check-cmd-change.bash "node-status" "(for i in 10.0.3.{2..50}; do echo $i; ssh $i 'dmesg | grep error'; done)" 'mailx -S smtp="smtp://smtp.example.com" -s "dmesg error monitor @wiles" -r zma@example.com zma@example.com'
 
 if [[ $# < 3 ]]; then
     echo "Usage: $0 id 'watched cmd' 'trigger cmd'"
