@@ -3,7 +3,7 @@
 # Download, build and install wine 32-bit on CentOS 8
 
 # For details of this script, please check
-# https://www.systutorials.com/install-32-bit-wine-1-8-centos-7/
+# https://www.systutorials.com/how-to-install-wine-32-bit-on-centos-8/
 
 # Authors:
 # Mika Knuutila (mika [at] digiaika.fi)
