@@ -2,7 +2,7 @@
 
 # Install gitolite in one command
 # For how to use it, please check
-# http://www.systutorials.com/5323/how-to-set-up-gitolite-git-server-a-ten-minute-tutorial/
+# https://www.systutorials.com/how-to-set-up-gitolite-git-server-a-ten-minute-tutorial/
 
 if [ $# -lt 1 ]; then
     echo "Usage: $0 admin_pub_key"

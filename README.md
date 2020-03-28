@@ -3,15 +3,11 @@
 Some useful scripts mostly for Linux environments.
 
 For more details about how to use these scripts, please search for their names
-on:
-
-http://www.systutorials.com
-
-or check the commend at the beginning parts of the scripts.
+on https://www.systutorials.com or check the commend at the beginning parts of the scripts.
 
 ## Author
 
-Eric Zhiqiang Ma ( http://www.ericzma.com ) and contributors.
+Eric Ma ( https://www.ericzma.com ) and contributors.
 
 ## License
 

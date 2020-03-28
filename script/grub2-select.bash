@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Author: Eric Zhiqiang Ma (http://www.ericzma.com)
+# Author: Eric Ma (https://www.ericzma.com)
 # How to use this script:
-# http://www.systutorials.com/3826/setting-default-entry-in-grub2-and-grub/
+# https://www.systutorials.com/setting-default-entry-in-grub2-and-grub/
 
 # TODO:
 # fix bug in checking "Invalid selection"
