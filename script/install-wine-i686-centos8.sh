@@ -15,7 +15,6 @@ set -o errexit
 log=`mktemp -t install-wine.XXXXXX.log`
 NPROC=$(nproc)
 CFLAGS="-g -O2 -std=gnu99"
-wine2up="2 3 4 5" # wine 2 and up
 ver=5.0       # last stable version on 2020-03-19
 
 # Install
@@ -25,6 +24,11 @@ fi
 
 vermajor=$(echo ${ver} | cut -d'.' -f1)
 verurlstr=$(echo ${ver} | cut -d'.' -f1,2)
+
+if (($vermajor<2)); then
+  echo "Only Wine versions >= 2.x are supported."
+  exit 3
+fi
 
 date > $log
 echo "Hello there. Start to download, build and install wine $ver 32-bit version..." | tee -a $log
@@ -79,25 +83,18 @@ dnf update --best --allowerasing -y 2>&1 >>$log
 dnf builddep wine -y 2>&1 >>$log
 dnf update -y 2>&1 >>$log
 
-if [[ "${wine2up}" =~ "${vermajor}" ]]; then
-  # for wine 2 and up
-  # Thanks to gretzware https://www.systutorials.com/install-32-bit-wine-1-8-centos-7/#comment-157977
-  dnf install gstreamer1-plugins-base-devel.{x86_64,i686} gstreamer1-devel.{x86_64,i686} systemd-devel.{x86_64,i686} -y 2>&1 >> $log
+# for wine 2 and up
+# Thanks to gretzware https://www.systutorials.com/install-32-bit-wine-1-8-centos-7/#comment-157977
+dnf install gstreamer1-plugins-base-devel.{x86_64,i686} gstreamer1-devel.{x86_64,i686} systemd-devel.{x86_64,i686} -y 2>&1 >> $log
 
-  # Thanks to gretzware https://www.systutorials.com/install-32-bit-wine-1-8-centos-7/#comment-158134
-  dnf install libXfixes-devel.{x86_64,i686}  -y 2>&1 >> $log
-fi
+# Thanks to gretzware https://www.systutorials.com/install-32-bit-wine-1-8-centos-7/#comment-158134
+dnf install libXfixes-devel.{x86_64,i686}  -y 2>&1 >> $log
 
 echo "Download and unpack the wine source package..." 2>&1 | tee -a $log
 
 cd /usr/src 2>&1 >> $log
-if [[ "${vermajor}" == "1" ]]; then
-  wget http://dl.winehq.org/wine/source/${verurlstr}/wine-${ver}.tar.bz2 -O wine-${ver}.tar.bz2 2>&1 >> $log
-  tar xjf wine-${ver}.tar.bz2 2>&1 >> $log
-elif [[ "${wine2up}" =~ "${vermajor}" ]]; then
-  wget http://dl.winehq.org/wine/source/${verurlstr}/wine-${ver}.tar.xz -O wine-${ver}.tar.xz 2>&1 >> $log
-  tar xf wine-${ver}.tar.xz 2>&1 >> $log
-fi
+wget http://dl.winehq.org/wine/source/${verurlstr}/wine-${ver}.tar.xz -O wine-${ver}.tar.xz 2>&1 >> $log
+tar xf wine-${ver}.tar.xz 2>&1 >> $log
 
 echo "Build wine..." 2>&1 | tee -a $log
 cd wine-${ver}/ 2>&1 >> $log
