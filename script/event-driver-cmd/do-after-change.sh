@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Eric Zhiqiang Ma (http://www.ericzma.com)
+# Eric Ma (https://www.ericzma.com)
 
 # Example
 #   do-after-change.sh make *.c *.h Makefile

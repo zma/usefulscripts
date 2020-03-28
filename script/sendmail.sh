@@ -6,7 +6,7 @@
 
 # Authors:
 # NerdOfCode ( https://github.com/NerdOfCode )
-# Eric Z Ma ( http://www.ericzma.com )
+# Eric Ma ( https://www.ericzma.com )
 
 #for saving the mail temporarily
 random=$RANDOM

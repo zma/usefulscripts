@@ -2,7 +2,7 @@
 
 # Get file statistics of size, disk usage and checksum
 
-# By: Eric Zhiqiang Ma (http://www.ericzma.com)
+# By: Eric Ma (http://www.ericzma.com)
 
 function usage ()
 {

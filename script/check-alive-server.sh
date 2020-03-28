@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Check alive servers by ping
-# Author: Zhiqiang Ma http://www.ericzma.com
+# Author: Eric Ma https://www.ericzma.com
 
 if [ $# -lt 1 ]
 then

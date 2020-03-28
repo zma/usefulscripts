@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Author: Eric Zhiqiang Ma (http://www.ericzma.com)
+# Author: Eric Ma (https://www.ericzma.com)
 # TODO: 
 # print msg that it only works for grub 1
 # fix bug in checking "Invalid selection"

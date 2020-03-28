@@ -1,7 +1,7 @@
 #!/bin/env bash
 
 # Install emacs of version $1
-# Author: Eric Zhiqiang Ma (http://www.ericzma.com)
+# Author: Eric Ma (https://www.ericzma.com)
 
 if [ $# -lt 1 ]; then
     echo "Usage: $0 version"

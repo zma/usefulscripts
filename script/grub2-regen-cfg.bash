@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Author: Eric Zhiqiang Ma (http://www.ericzma.com)
+# Author: Eric Ma (https://www.ericzma.com)
 # How to use this script:
 # https://www.systutorials.com/how-to-regenerate-grub2-config-file-on-linux/
 

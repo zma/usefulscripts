@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Eric Zhiqiang Ma (http://www.ericzma.com)
+# Eric Ma (https://www.ericzma.com)
 
 # Example
 #   check-cmd-timeout.sh "node-status" "/paht/cmd/may/timeout" 'mailx -S smtp="smtp://smtp.ust.hk" -s "cmd timeout @`hostname`" -r zma@connect.ust.hk zma@connect.ust.hk'
