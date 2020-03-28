@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-# Written by Eric Zhiqiang Ma (http://www.ericzma.com)
+# Written by Eric Ma (https://www.ericzma.com)
 
 # For an introduction and how to use ths tool, please check
-# https://www.systutorials.com/5475/turning-gnome-terminal-to-a-pop-up-terminal/
+# https://www.systutorials.com/turning-gnome-terminal-to-a-pop-up-terminal/
 
 # Required tools: xdotool
 
