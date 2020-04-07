@@ -22,18 +22,18 @@ majorver=$(echo ${version} | cut -d'.' -f1,2)
 pkgfile=go${version}.linux-amd64.tar.gz
 wget https://dl.google.com/go/${pkgfile} -O ${pkgfile}
 
-if [[ -e go ]]; then
-  echo "ERROR: Folder/file go exists."
-  exit 1
-fi
-
 if [[ -e /usr/local/go-${majorver} ]]; then
   echo "ERROR: Folder/file /usr/local/go-${majorver} exists."
   exit 1
 fi
 
+tmpdir=tmp-go-${version}-$(date +%s)
+mkdir -p ${tmpdir}
+cd ${tmpdir}
 tar xf ${pkgfile}
 sudo mv go /usr/local/go-${majorver}
+cd ..
+rmdir ${tmpdir}
 
 echo -e "export GOROOT=/usr/local/go-${majorver}\n
 export PATH=\$GOROOT/bin:\$PATH" | sudo tee /etc/profile.d/Z99-go-${majorver}.sh
