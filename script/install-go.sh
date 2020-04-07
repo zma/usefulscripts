@@ -35,7 +35,7 @@ fi
 tar xf ${pkgfile}
 sudo mv go /usr/local/go-${majorver}
 
-echo "export GOROOT=/usr/local/go-${majorver}\n
+echo -e "export GOROOT=/usr/local/go-${majorver}\n
 export PATH=\$GOROOT/bin:\$PATH" | sudo tee /etc/profile.d/Z99-go-${majorver}.sh
 
 echo "Installed Go ${majorver}. You can now logout and login again to verify."
