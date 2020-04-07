@@ -1,7 +1,8 @@
 #!/bin/bash
 #
 # Install Go on Linux.
-# Check https://www.systutorials.com/?p=253721
+# Check how to use it at:
+# https://www.systutorials.com/how-to-install-go-1-13-x-on-ubuntu-18-04/
 #
 # Authors: Eric Ma (https://www.ericzma.com)
 #
