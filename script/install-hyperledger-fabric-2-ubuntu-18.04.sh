@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Install Hyperledger Fabric 2.0.1 on Ubuntu 18.04 Linux.
+# Install Hyperledger Fabric 2.0.0 on Ubuntu 18.04 Linux.
 #
 # Check how to use it at:
 # https://www.systutorials.com/how-to-install-go-1-13-x-on-ubuntu-18-04/
@@ -44,8 +44,8 @@ npm --version
 go version
 
 cd $GOPATH
-echo "Install Hyperledger Fabric 2.0.1 binaries and coker images ..."
-sg docker -c "curl -sSL https://bit.ly/2ysbOFE | bash -s -- 2.0.1 1.4.6 0.4.18 -s"
+echo "Install Hyperledger Fabric 2.0.0 binaries and coker images ..."
+sg docker -c "curl -sSL https://bit.ly/2ysbOFE | bash -s -- 2.0.0 1.4.6 0.4.18 -s"
 
 echo "Now start test-network ..."
 go get -u github.com/hyperledger/fabric-samples || rt=1
