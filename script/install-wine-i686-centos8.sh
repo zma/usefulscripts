@@ -6,7 +6,7 @@
 # https://www.systutorials.com/how-to-install-wine-32-bit-on-centos-8/
 
 # Authors:
-# Mika Knuutila (mika [at] digiaika.fi)
+# Mika Knuutila
 # Eric Ma (https://www.ericzma.com)
 
 set -o errexit
