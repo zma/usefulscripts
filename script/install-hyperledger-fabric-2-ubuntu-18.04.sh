@@ -31,6 +31,7 @@ if [[ "$bashrcupdated" == "1" ]]; then
   echo 'export PATH=$GOPATH/bin:$PATH' >> ~/.bashrc
 fi
 
+source /etc/profile.d/Z99-go-1.13.sh
 source ~/.bashrc
 
 echo ""
