@@ -44,9 +44,8 @@ npm --version
 go version
 
 go get -u github.com/hyperledger/fabric-samples || rt=1
-git checkout a026a4ffbfcf69f33a2a25cd71c5a776ca2fdda5
-
 cd $GOPATH/src/github.com/hyperledger/fabric-samples
+git checkout a026a4ffbfcf69f33a2a25cd71c5a776ca2fdda5
 
 echo "Install Hyperledger Fabric 2.0.0 binaries and coker images ..."
 sg docker -c "curl -sSL https://bit.ly/2ysbOFE | bash -s -- 2.0.0 1.4.6 0.4.18 -s"
