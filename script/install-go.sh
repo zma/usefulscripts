@@ -35,6 +35,7 @@ wget https://dl.google.com/go/${pkgfile} -O ${pkgfile}
 tar xf ${pkgfile}
 sudo mv go /usr/local/go-${majorver}
 
+rm -f ${pkgfile}
 cd ..
 rmdir ${tmpdir}
 
