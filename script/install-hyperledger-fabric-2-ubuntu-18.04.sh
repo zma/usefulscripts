@@ -23,7 +23,7 @@ else
 fi
 
 bashrcupdated=1
-grep 'export GOPATH=$HOME/go' ~/.bashrc && bashrcupdated=0 || bashrcupdated=1
+grep -Pzl '\nexport GOPATH=\$HOME/go\nexport PATH=\$GOPATH/bin:\$PATH\n' ~/.bashrc && bashrcupdated=0 || bashrcupdated=1
 
 if [[ "$bashrcupdated" == "1" ]]; then
   echo 'export GOPATH=$HOME/go' >> ~/.bashrc
@@ -43,13 +43,37 @@ docker-compose --version
 npm --version
 go version
 
-cd $GOPATH
+go get -u github.com/hyperledger/fabric-samples || rt=1
+git checkout a026a4ffbfcf69f33a2a25cd71c5a776ca2fdda5
+
+cd $GOPATH/src/github.com/hyperledger/fabric-samples
+
 echo "Install Hyperledger Fabric 2.0.0 binaries and coker images ..."
 sg docker -c "curl -sSL https://bit.ly/2ysbOFE | bash -s -- 2.0.0 1.4.6 0.4.18 -s"
+cp -rv bin/* $GOPATH/bin/
 
 echo "Now start test-network ..."
-go get -u github.com/hyperledger/fabric-samples || rt=1
-cd $GOPATH/src/github.com/hyperledger/fabric-samples
-git checkout a026a4ffbfcf69f33a2a25cd71c5a776ca2fdda5
-sg docker -c "cd $GOPATH/src/github.com/hyperledger/fabric-samples/test-network && ./network.sh up"
+cd $GOPATH/src/github.com/hyperledger/fabric-samples/test-network
+sg docker -c "./network.sh up"
 
+echo ""
+echo ""
+echo ""
+echo "Congratulations! Your Hyperledger Fabric 2.0.0 test network is up."
+echo ""
+echo "Will create channel and register chaincode after a while..."
+sleep 5
+
+echo "Creating channel mychannel ..."
+sg docker -c "./network.sh createChannel -c mychannel"
+
+echo "Create a chaincode in go ..."
+sg docker -c "./network.sh deployCC -l go"
+
+echo ""
+echo "**** Congratulations! ****"
+echo "Your Hyperledger Fabric 2.0.0 test network with channel mychannel and chaincode fabcar is ready. Enjoy."
+
+echo "To shutdown the network, first logout and then login again, then run:"
+echo "cd $GOPATH/src/github.com/hyperledger/fabric-samples/test-network && ./network.sh down"
+echo ""
