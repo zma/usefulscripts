@@ -12,8 +12,8 @@
 #
 
 set -o errexit
+# set -x
 mydir=$(dirname $0)
-set -x
 
 echo ""
 echo "Set up Go 1.13.9 ..."
