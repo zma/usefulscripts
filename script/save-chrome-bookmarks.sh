@@ -37,7 +37,7 @@ for d in "${profiledir}"/*; do
   if [[ -f "$d/Preferences" ]]; then
     email=$(jq '.account_info[0].email' "$d/Preferences" | tr -d '"')
     if [[ "$email" == "$profileemail" ]]; then
-      cat "$d/Bookmarks" | "$savecmd"
+      cat "$d/Bookmarks" | eval "$savecmd"
       exit 0
     fi
   else
