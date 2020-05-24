@@ -1,9 +1,12 @@
 #!/bin/bash
 #
+# Find the Chrome bookmarks file by account <email>
+# and save a copy into file <resultpath>
+#
 # Authors: Eric Ma (https://www.ericzma.com)
 #
 # Usage:
-#    ./show-chrome-bookmarks.sh <email>
+#    ./show-chrome-bookmarks.sh <email> <resultpath>
 #
 
 profileemail=$1
