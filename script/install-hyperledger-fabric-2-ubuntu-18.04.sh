@@ -3,7 +3,7 @@
 # Install Hyperledger Fabric 2.0.0 on Ubuntu 18.04 Linux.
 #
 # Check how to use it at:
-# https://www.systutorials.com/how-to-install-go-1-13-x-on-ubuntu-18-04/
+# https://www.systutorials.com/how-to-install-hyperledger-fabric-2-0-in-ubuntu-18-04/
 #
 # Authors: Eric Ma (https://www.ericzma.com)
 #
@@ -34,8 +34,11 @@ fi
 source /etc/profile.d/Z99-go-1.13.sh
 source ~/.bashrc
 
+# set GOPATH explicitely
+export GOPATH=$(eval echo $(go env | grep ^GOPATH= | cut -d'=' -f2))
+
 echo ""
-echo "Installa packages ..."
+echo "Install packages ..."
 sudo apt install git curl wget docker docker-compose nodejs npm
 sudo npm install npm@5.6.0 -g
 sudo usermod -aG docker $USER
