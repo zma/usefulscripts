@@ -38,7 +38,7 @@ echo "Enabling needed repos and update..." | tee -a $log
 
 # Fixes for CentOS 8
 dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm -y 2>&1 >>$log
-dnf config-manager --set-enable PowerTools 2>&1 >>$log
+dnf config-manager --set-enable powertools 2>&1 >>$log
 rpm --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro 2>&1 >>$log
 dnf install http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm -y 2>&1 >>$log
 dnf clean all 2>&1 >>$log
