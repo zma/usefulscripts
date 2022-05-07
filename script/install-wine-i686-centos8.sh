@@ -69,20 +69,21 @@ dnf install openldap-devel libxslt-devel libXcursor-devel libXi-devel libXxf86vm
 # Fixes for CentOS 8
 dnf install http://mirror.centos.org/centos/7/os/x86_64/Packages/isdn4k-utils-3.2-99.el7.i686.rpm -y 2>&1 >> $log
 dnf install http://mirror.centos.org/centos/7/os/x86_64/Packages/isdn4k-utils-devel-3.2-99.el7.i686.rpm -y 2>&1 >> $log
-dnf install http://mirror.centos.org/centos/7/os/x86_64/Packages/audiofile-0.3.6-4.el7.i686.rpm -y 2>&1 >> $log
-dnf install http://mirror.centos.org/centos/7/os/x86_64/Packages/audiofile-devel-0.3.6-4.el7.i686.rpm -y 2>&1 >> $log
+dnf install http://mirror.centos.org/centos/7/os/x86_64/Packages/audiofile-0.3.6-9.el7.i686.rpm -y 2>&1 >> $log
+dnf install http://mirror.centos.org/centos/7/os/x86_64/Packages/audiofile-devel-0.3.6-9.el7.i686.rpm -y 2>&1 >> $log
 dnf install http://mirror.centos.org/centos/7/os/x86_64/Packages/qt-4.8.7-8.el7.i686.rpm -y 2>&1 >> $log
 dnf install http://mirror.centos.org/centos/7/os/x86_64/Packages/libmng-1.0.10-14.el7.i686.rpm -y 2>&1 >> $log
 dnf install http://mirror.centos.org/centos/7/os/x86_64/Packages/qt-x11-4.8.7-8.el7.i686.rpm -y 2>&1 >> $log
 dnf install http://mirror.centos.org/centos/7/os/x86_64/Packages/qt-devel-4.8.7-8.el7.i686.rpm -y 2>&1 >> $log
-dnf install http://mirror.centos.org/centos/8/AppStream/x86_64/os/Packages/vulkan-loader-devel-1.2.148.0-1.el8.i686.rpm -y 2>&1 >> $log
-dnf install http://mirror.centos.org/centos/8/PowerTools/x86_64/os/Packages/mpg123-devel-1.25.10-2.el8.i686.rpm -y 2>&1 >> $log
-dnf install https://pkgs.dyn.su/el8/extras/x86_64/libvkd3d-1.1-3.el8.i686.rpm -y 2>&1 >> $log
-dnf install https://pkgs.dyn.su/el8/extras/x86_64/libvkd3d-devel-1.1-3.el8.i686.rpm -y 2>&1 >> $log
-dnf install https://pkgs.dyn.su/el8/multimedia/x86_64/libFAudio-20.07-1.el8.8_2.i686.rpm -y 2>&1 >> $log
-dnf install https://pkgs.dyn.su/el8/multimedia/x86_64/libFAudio-devel-20.07-1.el8.8_2.i686.rpm -y 2>&1 >> $log
-dnf install https://pkgs.dyn.su/el8/multimedia/x86_64/libFAudio-20.07-1.el8.8_2.x86_64.rpm -y 2>&1 >> $log
-dnf install https://pkgs.dyn.su/el8/multimedia/x86_64/libFAudio-devel-20.07-1.el8.8_2.x86_64.rpm -y 2>&1 >> $log
+dnf install https://vault.centos.org/centos/8/AppStream/x86_64/os/Packages/vulkan-loader-devel-1.2.189.0-1.el8.i686.rpm -y 2>&1 >> $log
+dnf install https://vault.centos.org/centos/8/PowerTools/x86_64/os/Packages/mpg123-devel-1.25.10-2.el8.i686.rpm -y 2>&1 >> $log
+dnf install https://pkgs.dyn.su/el8/extras/x86_64/libvkd3d-shader-1.2-10.el8.i686.rpm -y 2>&1 >> $log
+dnf install https://pkgs.dyn.su/el8/extras/x86_64/libvkd3d-1.2-10.el8.i686.rpm -y 2>&1 >> $log
+dnf install https://pkgs.dyn.su/el8/extras/x86_64/libvkd3d-devel-1.2-10.el8.i686.rpm -y 2>&1 >> $log
+dnf install https://pkgs.dyn.su/el8/extras/x86_64/libFAudio-21.11-2.el8.i686.rpm -y 2>&1 >> $log
+dnf install https://pkgs.dyn.su/el8/extras/x86_64/libFAudio-devel-21.11-2.el8.i686.rpm -y 2>&1 >> $log
+dnf install https://download-ib01.fedoraproject.org/pub/epel/8/Everything/x86_64/Packages/l/libFAudio-21.11-1.el8.x86_64.rpm -y 2>&1 >> $log
+dnf install https://download-ib01.fedoraproject.org/pub/epel/8/Everything/x86_64/Packages/l/libFAudio-devel-21.11-1.el8.x86_64.rpm -y 2>&1 >> $log
 
 dnf install glibc-devel.i686 dbus-devel.i686 freetype-devel.i686 pulseaudio-libs-devel.i686 libX11-devel.i686 mesa-libGLU-devel.i686 libICE-devel.i686 libXext-devel.i686 libXcursor-devel.i686 libXi-devel.i686 libXxf86vm-devel.i686 libXrender-devel.i686 libXinerama-devel.i686 libXcomposite-devel.i686 libXrandr-devel.i686 mesa-libGL-devel.i686 mesa-libOSMesa-devel.i686 libxml2-devel.i686 zlib-devel.i686 gnutls-devel.i686 ncurses-devel.i686 sane-backends-devel.i686 libv4l-devel.i686 libgphoto2-devel.i686 libexif-devel.i686 lcms2-devel.i686 gettext-devel.i686 isdn4k-utils-devel.i686 cups-devel.i686 fontconfig-devel.i686 gsm-devel.i686 libjpeg-turbo-devel.i686 libtiff-devel.i686 unixODBC.i686 openldap-devel.i686 alsa-lib-devel.i686 audiofile-devel.i686 freeglut-devel.i686 giflib-devel.i686 gstreamer1-devel.i686 gstreamer1-plugins-base-devel.i686 libXmu-devel.i686 libXxf86dga-devel.i686 libieee1284-devel.i686 libpng-devel.i686 librsvg2-devel.i686 libstdc++-devel.i686 libusb-devel.i686 unixODBC-devel.i686 qt-devel.i686 libpcap-devel.i686 -y 2>&1 >> $log
 # Conflicting: pkgconfig.i686, libxslt-devel.i686, qt-devel.i686 and qt-x11.i686
@@ -134,4 +135,3 @@ echo "Congratulation! All are done. Enjoy!" 2>&1 | tee -a $log
 # make uninstall
 # cd /usr/src/wine-${ver}/wine64
 # make uninstall
-
